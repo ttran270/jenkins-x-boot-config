@@ -1,10 +1,13 @@
 cluster:
   clusterName: ""
-  environmentGitOwner: ""
+  environmentGitOwner: dxc
   environmentGitPublic: false
   project: ""
-  provider: gke
+  provider: eks
   zone: ""
+  gitKind: github
+  gitName: ghe
+  gitServer: https://github.dxc.com
 gitops: true
 environments:
 - key: dev
@@ -15,21 +18,26 @@ ingress:
   externalDNS: false
   tls:
     email: ""
-    enabled: false
-    production: false
+    enabled: true
+    production: true
 kaniko: true
-secretStorage: local
+secretStorage: vault
 storage:
+  backup:
+    enabled: true
+    url: s3://omni-k8s/backup
   logs:
-    enabled: false
-    url: ""
+    enabled: true
+    url: s3://omni-k8s/logs
   reports:
-    enabled: false
-    url: ""
+    enabled: true
+    url: s3://omni-k8s/reports
   repository:
-    enabled: false
-    url: ""
+    enabled: true
+    url: s3://omni-k8s/repository
+velero:
+  namespace: velero
 versionStream:
   ref: "master"
   url: https://github.com/jenkins-x/jenkins-x-versions.git
-webhook: prow
+webhook: lighthouse
