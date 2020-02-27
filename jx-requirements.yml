@@ -36,7 +36,7 @@ storage:
     enabled: true
     url: s3://omni-k8s/repository
 velero:
-  namespace: velero
+  namespace: system
 versionStream:
   ref: "master"
   url: https://github.com/jenkins-x/jenkins-x-versions.git
